@@ -3,6 +3,15 @@ on:
   pull_request:
     types:
       - opened
+  workflow_dispatch:
+  push:
+    branches:
+      - main # workflow will trigger when there is a push to main branch
+      - 'dev-*' # workflow will trigger when there is a push to dev-br1, dev-br2-br3 etc
+      - 'feat/**' #workflow will trigger when there is a push to feat/feat1 feat/feat1/feat2/... etc
+    paths-ignore:
+      - '.github/workflows/*' # workflow will trigger when there is a push to above branches but only if no files are changed from this path
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
